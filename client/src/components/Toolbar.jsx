@@ -4,7 +4,7 @@ import "../style/toolbar.scss";
 const ToolBar = () => {
     return (
         <div className="toolbar">
-            <p>s</p>
+            <button className="toolbar__btn brush" />
         </div>
     );
 };

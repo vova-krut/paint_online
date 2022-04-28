@@ -3,8 +3,8 @@ import "../style/toolbar.scss";
 
 const SettingsBar = () => {
     return (
-        <div className="toolbar" style={{ top: 40 }}>
-            <p>s</p>
+        <div className="settingsbar">
+            <p></p>
         </div>
     );
 };

@@ -7,8 +7,8 @@ import "./style/app.scss";
 const App = () => {
     return (
         <div className="app">
-            <ToolBar />
             <SettingsBar />
+            <ToolBar />
             <Canvas />
         </div>
     );
