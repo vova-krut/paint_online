@@ -9,6 +9,11 @@ import Line from "../tools/Line";
 import Rect from "../tools/Rect";
 
 const ToolBar = () => {
+    const changeColor = (e) => {
+        toolState.setStrokeColor(e.target.value);
+        toolState.setFillColor(e.target.value);
+    };
+
     return (
         <div className="toolbar">
             <button
@@ -35,7 +40,11 @@ const ToolBar = () => {
                 className="toolbar__btn line"
                 onClick={() => toolState.setTool(new Line(canvasState.canvas))}
             />
-            <input style={{ marginLeft: 10 }} type="color" />
+            <input
+                onChange={(e) => changeColor(e)}
+                style={{ marginLeft: 10 }}
+                type="color"
+            />
             <button className="toolbar__btn undo" />
             <button className="toolbar__btn redo" />
             <button className="toolbar__btn save" />
