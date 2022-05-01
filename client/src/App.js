@@ -3,7 +3,7 @@ import Canvas from "./components/Canvas";
 import SettingsBar from "./components/SettingsBar";
 import ToolBar from "./components/Toolbar";
 import "./style/app.scss";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 const App = () => {
     return (
@@ -20,6 +20,10 @@ const App = () => {
                     </>
                 }
             ></Route>
+            <Route
+                path="*"
+                element={<Navigate to={`f${(+new Date()).toString(16)}`} />}
+            />
         </Routes>
     );
 };
