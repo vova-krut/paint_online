@@ -10,7 +10,6 @@ import Rect from "../tools/Rect";
 
 const ToolBar = () => {
     const changeColor = (e) => {
-        toolState.setStrokeColor(e.target.value);
         toolState.setFillColor(e.target.value);
     };
 
