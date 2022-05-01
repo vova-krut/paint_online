@@ -7,6 +7,7 @@ import Brush from "../tools/Brush";
 import { Modal, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Rect from "../tools/Rect";
+import axios from "axios";
 
 const Canvas = observer(() => {
     const canvasRef = useRef();
@@ -16,6 +17,28 @@ const Canvas = observer(() => {
 
     useEffect(() => {
         canvasState.setCanvas(canvasRef.current);
+        axios
+            .get(`http://localhost:5000/image?id=${params.id}`)
+            .then((response) => {
+                const img = new Image();
+                img.src = response.data;
+                img.onload = () => {
+                    const ctx = canvasRef.current.getContext("2d");
+                    ctx.clearRect(
+                        0,
+                        0,
+                        canvasRef.current.width,
+                        canvasRef.current.height
+                    );
+                    ctx.drawImage(
+                        img,
+                        0,
+                        0,
+                        canvasRef.current.width,
+                        canvasRef.current.height
+                    );
+                };
+            });
     }, []);
 
     useEffect(() => {
@@ -77,6 +100,9 @@ const Canvas = observer(() => {
 
     const mouseDownHandler = () => {
         canvasState.pushToUndo(canvasRef.current.toDataURL());
+        axios.post(`http://localhost:5000/image?id=${params.id}`, {
+            img: canvasRef.current.toDataURL(),
+        });
     };
 
     const connectHandler = () => {
